@@ -1,9 +1,9 @@
 import pygame
 import sys
-import button
-import textbox
-import user
-import clip
+from src import button
+from src import textbox
+from src import user
+from src import clip
 from settings import *
 pygame.init()
 pygame.mixer.init()
@@ -30,7 +30,7 @@ with open('audio_clips.txt', 'r') as f:
         path, offset, answer = line.strip().split(',')
         song = clip.Clip(path, float(offset), answer)
         songs.append(song)
-song_index = 1
+song_index = 0
 song = songs[song_index]
 users = [user.User("Player 1"), user.User("Player 2")]
 
