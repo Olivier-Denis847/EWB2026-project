@@ -28,6 +28,10 @@ START_BUTTON = pygame.Rect(WIDTH // 2 - 100, HEIGHT // 2 - 25, 200, 50)
 ROOM_CODE_BOX = textbox.TextBox(WIDTH // 2 - 100, HEIGHT * 3 // 4 - 25, 200, 40, font_main)
 BACK_ARROW_MAIN = button.Button(HIGHLIGHT_COLOR, (25, 25), 20, BACK_ICON_PATH)
 
+game_mode = 0
+MODE_TEXT = font_main.render(f'Mode: {MODES[game_mode]}', True, FONT_COLOR)
+MODE_BOX = pygame.Rect(WIDTH - MODE_TEXT.get_width() - 10, 10, MODE_TEXT.get_width(), MODE_TEXT.get_height())
+
 songs = []
 with open('audio_clips.txt', 'r') as f:
     lines = f.readlines()
@@ -98,6 +102,9 @@ while running:
                     STATE = 'main'
                     room_code = ''.join(random.choices(string.ascii_letters, k=5))
                     room_code = room_code.upper()
+                elif MODE_BOX.collidepoint(event.pos):
+                    game_mode = (game_mode + 1) % len(MODES)
+                    MODE_TEXT = font_main.render(f'Mode: {MODES[game_mode]}', True, FONT_COLOR)
             code = ROOM_CODE_BOX.handle_event(event)
             if code is not None:
                 room_code = code.upper()
@@ -174,6 +181,8 @@ while running:
         screen.blit(room_text, (WIDTH // 2 - room_text.get_width() // 2, HEIGHT // 2 + 85))
 
         ROOM_CODE_BOX.draw(screen)
+
+        screen.blit(MODE_TEXT, (WIDTH - MODE_TEXT.get_width() - 10, 10))
     pygame.display.flip()
     clock.tick(60)
 

@@ -4,6 +4,7 @@ HEIGHT = 600
 
 # Game constants
 MAX_TIME = 5000
+MODES = ['Audio', 'Text', 'Image', 'All']
 
 # Assets
 PLAY_ICON_PATH = 'assets/images/play_button.png'
