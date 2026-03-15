@@ -11,7 +11,7 @@ class Button:
         pygame.draw.circle(screen, self.color, self.centre, self.radius)
         if self.icon_path:
             big_icon = pygame.image.load(self.icon_path).convert_alpha()
-            icon = pygame.transform.smoothscale(big_icon, (self.radius * 1.5, self.radius * 1.5))
+            icon = pygame.transform.smoothscale(big_icon, (self.radius * 1.3, self.radius * 1.3))
             icon_rect = icon.get_rect(center=self.centre)
             screen.blit(icon, icon_rect)
     
